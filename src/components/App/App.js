@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom'
 import './App.css';
 
 import BusinessList from '../BusinessList/BusinessList';

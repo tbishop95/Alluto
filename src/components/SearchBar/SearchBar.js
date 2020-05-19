@@ -1,7 +1,13 @@
 import React from 'react';
 import './SearchBar.css';
+import axios from 'axios';
 
 class SearchBar extends React.Component {
+  state = {
+    where: '',
+    what: '',
+  };
+
   constructor(props) {
     super(props);
 
@@ -36,17 +42,33 @@ class SearchBar extends React.Component {
 
   handleTermChange(event) {
     this.setState({term: event.target.value});
+    this.setState({ what: event.target.value});
   }
 
   handleLocationChange(event) {
     this.setState({location: event.target.value});
+    this.setState({ where: event.target.value});
   }
 
   handleSearch(event) {
     this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
 
     event.preventDefault();
+
+    event.preventDefault();
+
+  const item = {
+    where: this.state.where,
+    what: this.state.what
   }
+
+  axios.post(`http://localhost:8888/AllutoAPI/searchqueries/create.php`, { item })
+  .then(res => {
+    console.log(res);
+    console.log(res.data.items);
+  })
+  }
+
 
   renderSortByOptions() {
     return Object.keys(this.sortByOptions).map(sortByOption => {
@@ -68,13 +90,13 @@ class SearchBar extends React.Component {
           </ul>
         </div>
         <div className="SearchBar-fields">
-          <span className="label">Where</span><input onChange={this.handleLocationChange}/>
-          <span className="label">What</span><input onChange={this.handleTermChange} />
+          <span className="label">Where</span><input onInput={this.handleChange} onChange={this.handleLocationChange}/>
+          <span className="label">What</span><input onInput={this.handleChange} onChange={this.handleTermChange} />
         </div>
         <div className="SearchBar-submit">
-          <a onClick={this.handleSearch}>Find</a>
+          <a type="submit" onClick={this.handleSearch}>Find</a>
         </div>
-      </div>
+      </div> 
     );
   }
 }
