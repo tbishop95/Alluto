@@ -73,3 +73,9 @@
   font-size: .88rem;
   line-height: 1rem;
 }
+
+.number {
+  color: #2D5EB5;
+  font-weight: 600;
+  padding-top:0.5rem;
+}

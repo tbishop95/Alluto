@@ -19,6 +19,7 @@ const Business = ({ business }) => {
           {business.city}, {business.state}
         </p>
         <p>{business.zipCode}</p>
+        <p class="number">{business.number}</p>
       </div>
       <div className="Business-category">
         <p>{business.category}</p>

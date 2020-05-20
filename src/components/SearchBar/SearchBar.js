@@ -55,8 +55,6 @@ class SearchBar extends React.Component {
 
     event.preventDefault();
 
-    event.preventDefault();
-
   const item = {
     where: this.state.where,
     what: this.state.what
@@ -90,8 +88,8 @@ class SearchBar extends React.Component {
           </ul>
         </div>
         <div className="SearchBar-fields">
-          <span className="label">Where</span><input onInput={this.handleChange} onChange={this.handleLocationChange}/>
-          <span className="label">What</span><input onInput={this.handleChange} onChange={this.handleTermChange} />
+          <span className="label">Where</span><input onChange={this.handleLocationChange}/>
+          <span className="label">What</span><input onChange={this.handleTermChange} />
         </div>
         <div className="SearchBar-submit">
           <a type="submit" onClick={this.handleSearch}>Find</a>
